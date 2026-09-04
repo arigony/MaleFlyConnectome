@@ -31,8 +31,6 @@ export class HandARController {
     if (this.handLandmarker) return;
     this.status(`Camera active · loading MediaPipe ${MP_VERSION} hand detector…`);
 
-    // Import the actual ESM bundle, not the npm package root. The package root
-    // is not a browser module URL and caused the v0.2.2 initialization failure.
     const { FilesetResolver, HandLandmarker } = await import(MP_MODULE);
     const vision = await FilesetResolver.forVisionTasks(`${MP_ROOT}/wasm`);
     const options = {
@@ -138,7 +136,6 @@ export class HandARController {
     const sw = innerWidth;
     const sh = innerHeight;
 
-    // Match CSS object-fit: cover so hand landmarks and the visible video line up.
     const coverScale = Math.max(sw / vw, sh / vh);
     const renderedW = vw * coverScale;
     const renderedH = vh * coverScale;
@@ -162,7 +159,7 @@ export class HandARController {
 
   update(now) {
     if (!this.active || !this.handLandmarker || this.video.readyState < 2) return false;
-    if (now - this.lastInferenceAt < 33) return false; // cap hand inference near 30 Hz
+    if (now - this.lastInferenceAt < 33) return false;
     if (this.video.currentTime === this.lastVideoTime) return false;
 
     this.lastInferenceAt = now;
@@ -197,18 +194,28 @@ export class HandARController {
     );
 
     const pCenter = this.normalizedToWorld(palm);
-    const p5 = this.normalizedToWorld(hand[5]);
-    const p17 = this.normalizedToWorld(hand[17]);
-    const palmWidth = Math.max(0.08, p5.distanceTo(p17));
 
+    // Use palm dimensions in visible-screen coordinates as a depth proxy.
+    // This makes the connectome grow when the hand approaches the camera and
+    // shrink when it moves away, without depending on finger opening/closing.
+    const s0 = this.landmarkToViewport(hand[0]);
     const s5 = this.landmarkToViewport(hand[5]);
+    const s9 = this.landmarkToViewport(hand[9]);
     const s17 = this.landmarkToViewport(hand[17]);
+    const d2 = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+    const palmWidthScreen = Math.max(0.01, d2(s5, s17));
+    const palmLengthScreen = Math.max(0.01, d2(s0, s9));
+    const apparentPalmSize = Math.sqrt(palmWidthScreen * palmLengthScreen);
     const angle = -Math.atan2(s17.y - s5.y, s17.x - s5.x);
 
-    this.sceneRoot.position.lerp(pCenter, 0.32);
-    const targetScale = Math.min(0.72, Math.max(0.12, palmWidth * 0.55));
-    const nextScale = this.sceneRoot.scale.x + (targetScale - this.sceneRoot.scale.x) * 0.30;
+    this.sceneRoot.position.lerp(pCenter, 0.34);
+
+    // Calibrated for a clearly visible object on a phone while retaining a
+    // broad dynamic range as the user's hand moves toward/away from the camera.
+    const targetScale = Math.min(2.4, Math.max(0.55, apparentPalmSize * 4.8));
+    const nextScale = this.sceneRoot.scale.x + (targetScale - this.sceneRoot.scale.x) * 0.34;
     this.sceneRoot.scale.setScalar(nextScale);
+
     this.sceneRoot.rotation.z += (angle - this.sceneRoot.rotation.z) * 0.24;
     this.sceneRoot.rotation.x += (-0.28 - this.sceneRoot.rotation.x) * 0.10;
 
