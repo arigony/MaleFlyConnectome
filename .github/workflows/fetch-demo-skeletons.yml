@@ -1,0 +1,46 @@
+name: fetch-demo-skeletons
+
+on:
+  push:
+    branches: [fix-demo-skeleton-loading]
+    paths:
+      - '.github/workflows/fetch-demo-skeletons.yml'
+      - 'js/swc-loader.js'
+      - 'js/config.js'
+      - 'scripts/fetch_demo_skeletons.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: fix-demo-skeleton-loading
+      - name: Download authoritative MaleCNS demo SWCs
+        run: |
+          mkdir -p data/skeletons
+          curl --fail --location --retry 3 \
+            'https://storage.googleapis.com/flyem-male-cns/v1.0/segmentation/skeletons-malecns/skeletons-swc/12781.swc' \
+            -o data/skeletons/12781.swc
+          curl --fail --location --retry 3 \
+            'https://storage.googleapis.com/flyem-male-cns/v1.0/segmentation/skeletons-malecns/skeletons-swc/556329.swc' \
+            -o data/skeletons/556329.swc
+          test -s data/skeletons/12781.swc
+          test -s data/skeletons/556329.swc
+          head -n 2 data/skeletons/12781.swc
+      - name: Commit bundled demo skeletons
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/skeletons/12781.swc data/skeletons/556329.swc
+          if git diff --cached --quiet; then
+            echo 'Demo skeletons already up to date.'
+            exit 0
+          fi
+          git commit -m 'Bundle authoritative DNge104 demo SWCs'
+          git push origin HEAD:fix-demo-skeleton-loading
