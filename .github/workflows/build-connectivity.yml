@@ -1,0 +1,63 @@
+name: build-public-connectivity
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/export_bulk_connectivity.py'
+      - '.github/workflows/build-connectivity.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-dnge104-subset:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Cache MaleCNS bulk downloads
+        uses: actions/cache@v4
+        with:
+          path: .cache/malecns
+          key: malecns-v1.0-flat-connectome-v1
+
+      - name: Install Arrow
+        run: python -m pip install --upgrade pip pyarrow
+
+      - name: Export DNge104 connectivity from official bulk graph
+        run: python scripts/export_bulk_connectivity.py --seeds 12781,556329 --min-weight 1 --partner-skeletons 32
+
+      - name: Show export summary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('data/connectivity.json').read_text())
+          print('dataset:', p['dataset'])
+          print('edges:', len(p['edges']))
+          print('maximum weight:', max((e['weight'] for e in p['edges']), default=0))
+          print('minimum weight:', min((e['weight'] for e in p['edges']), default=0))
+          PY
+
+      - name: Commit scientific subset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/connectivity.json data/manifest.json data/skeletons
+          if git diff --cached --quiet; then
+            echo "No connectivity changes to commit."
+          else
+            git commit -m "Add official DNge104 MaleCNS connectivity subset"
+            git push origin HEAD:main
+          fi
