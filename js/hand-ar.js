@@ -116,7 +116,7 @@ export class HandARController {
       throw new Error(`Hand detector failed to initialize: ${error?.message || error}`);
     }
 
-    this.status(`AR ready · camera active · hand tracking ${this.backend} · show an open palm.`);
+    this.status(`AR ready · camera active · hand tracking ${this.backend} · open hand to anchor, close hand to zoom.`);
   }
 
   stop() {
@@ -181,7 +181,7 @@ export class HandARController {
     const hand = result.landmarks?.[0];
     if (!hand) {
       if (performance.now() - this.lastHandSeen > 900) {
-        this.status(`Camera active · ${this.backend} tracking ready · move an open palm near the center.`);
+        this.status(`Camera active · ${this.backend} tracking ready · move a hand near the center.`);
       }
       return false;
     }
@@ -195,31 +195,44 @@ export class HandARController {
 
     const pCenter = this.normalizedToWorld(palm);
 
-    // Use palm dimensions in visible-screen coordinates as a depth proxy.
-    // This makes the connectome grow when the hand approaches the camera and
-    // shrink when it moves away, without depending on finger opening/closing.
-    const s0 = this.landmarkToViewport(hand[0]);
-    const s5 = this.landmarkToViewport(hand[5]);
-    const s9 = this.landmarkToViewport(hand[9]);
-    const s17 = this.landmarkToViewport(hand[17]);
+    // Use palm dimensions in visible-screen coordinates as a non-metric depth
+    // proxy. Palm dimensions remain comparatively stable when fingers curl.
+    const screen = hand.map((lm) => this.landmarkToViewport(lm));
+    const s0 = screen[0];
+    const s5 = screen[5];
+    const s9 = screen[9];
+    const s17 = screen[17];
     const d2 = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
     const palmWidthScreen = Math.max(0.01, d2(s5, s17));
     const palmLengthScreen = Math.max(0.01, d2(s0, s9));
     const apparentPalmSize = Math.sqrt(palmWidthScreen * palmLengthScreen);
     const angle = -Math.atan2(s17.y - s5.y, s17.x - s5.x);
 
+    // Gesture zoom: compare each fingertip with its MCP joint. This ratio is
+    // large for an open hand and falls as the fingers close toward a fist.
+    // Closing the hand therefore magnifies the connectome while reopening it
+    // returns toward the distance-based scale.
+    const fingerPairs = [[8, 5], [12, 9], [16, 13], [20, 17]];
+    const fingerExtension = fingerPairs.reduce(
+      (sum, [tip, mcp]) => sum + d2(screen[tip], screen[mcp]) / palmWidthScreen,
+      0
+    ) / fingerPairs.length;
+    const closeAmount = clamp((1.35 - fingerExtension) / 0.85, 0, 1);
+    const gestureZoom = 1 + closeAmount * 1.8;
+
     this.sceneRoot.position.lerp(pCenter, 0.34);
 
-    // Calibrated for a clearly visible object on a phone while retaining a
-    // broad dynamic range as the user's hand moves toward/away from the camera.
-    const targetScale = Math.min(2.4, Math.max(0.55, apparentPalmSize * 4.8));
-    const nextScale = this.sceneRoot.scale.x + (targetScale - this.sceneRoot.scale.x) * 0.34;
+    const distanceScale = clamp(apparentPalmSize * 4.8, 0.55, 2.4);
+    const targetScale = clamp(distanceScale * gestureZoom, 0.55, 5.2);
+    const nextScale = this.sceneRoot.scale.x + (targetScale - this.sceneRoot.scale.x) * 0.30;
     this.sceneRoot.scale.setScalar(nextScale);
 
     this.sceneRoot.rotation.z += (angle - this.sceneRoot.rotation.z) * 0.24;
     this.sceneRoot.rotation.x += (-0.28 - this.sceneRoot.rotation.x) * 0.10;
 
-    this.status(`Hand detected · connectome anchored to palm · ${this.backend} tracking.`);
+    const gestureState = closeAmount > 0.35 ? 'fist zoom active' : 'close hand to zoom';
+    this.status(`Hand detected · ${gestureState} · ${this.backend} tracking.`);
     return true;
   }
 }

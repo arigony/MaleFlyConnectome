@@ -53,6 +53,8 @@ button.accent { border-color:rgba(110,231,255,.45); }
 .checks { margin:0; padding-left:18px; color:#cbd5e1; font-size:11px; line-height:1.55; }
 .status { position:fixed; z-index:8; left:14px; bottom:14px; max-width:min(760px,calc(100vw - 28px)); border-radius:999px; padding:9px 13px; color:#dce6f3; font-size:11px; }
 .ar-help { position:fixed; z-index:9; top:50%; left:50%; transform:translate(-50%,-50%); padding:12px 15px; border-radius:14px; font-size:12px; text-align:center; max-width:340px; }
+.ar-back { display:none; position:fixed; z-index:20; right:max(14px, env(safe-area-inset-right)); bottom:max(14px, env(safe-area-inset-bottom)); min-height:44px; padding:0 16px; border-radius:999px; font-weight:700; border-color:rgba(110,231,255,.45); background:rgba(10,14,23,.86); }
+body.ar .ar-back { display:block; }
 .hidden { display:none !important; }
 .mini-card { margin-top:8px; padding:10px; border:1px solid var(--border); border-radius:10px; font-size:11px; line-height:1.45; color:#dce6f3; background:rgba(255,255,255,.04); }
 .muted { color:var(--muted); }
@@ -67,13 +69,15 @@ body.ar .topbar { opacity:.60; }
 body.ar .panel { opacity:.10; pointer-events:none; }
 body.ar .panel:hover { opacity:.92; pointer-events:auto; }
 body.ar .status { background:rgba(10,14,23,.62); }
+body.ar .panel-toggle { display:none !important; }
 @media (max-width:760px) {
   .topbar { top:8px; left:8px; right:8px; padding:11px 12px; }
   .topbar p, .badge-stack { display:none; }
   .panel { top:auto; left:8px; right:8px; bottom:52px; width:auto; max-height:48vh; padding:11px; }
   body.panel-collapsed .panel { transform:translateY(calc(100% + 60px)); opacity:0; pointer-events:none; }
   .panel-toggle { display:block; }
-  .status { left:8px; bottom:8px; max-width:calc(100vw - 100px); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .status { left:8px; bottom:8px; max-width:calc(100vw - 148px); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .stats.four { grid-template-columns:repeat(2,1fr); }
   body.ar .panel { transform:translateY(calc(100% + 60px)); opacity:0; }
+  .ar-back { right:max(8px, env(safe-area-inset-right)); bottom:max(8px, env(safe-area-inset-bottom)); min-height:42px; padding:0 14px; }
 }
