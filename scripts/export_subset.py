@@ -107,7 +107,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--type", default="DNge104", help="MaleCNS neuron type used as the seed set")
     ap.add_argument("--min-weight", type=int, default=1, help="Server-side minimum total connection weight")
-    ap.add_argument("--max-partners", type=int, default=0, help="Maximum number of unique seed-adjacent edges retained; 0 keeps all")
+    ap.add_argument("--max-partners", type=int, default=0, help="Maximum number of seed-adjacent edges retained; 0 keeps all")
     ap.add_argument("--partner-skeletons", type=int, default=24, help="Also export skeletons for the top N partner neurons; 0 disables")
     args = ap.parse_args()
 
@@ -121,7 +121,7 @@ def main() -> None:
         raise SystemExit("Set NEUPRINT_APPLICATION_CREDENTIALS with your neuPrint token.")
 
     client = Client(SERVER, dataset=DATASET, token=token)
-    seeds = fetch_neurons(NC(type=args.type), omit_rois=True, client=client)
+    seeds, _ = fetch_neurons(NC(type=args.type, regex=False), omit_rois=True, client=client)
     if seeds.empty:
         raise SystemExit(f"No neurons found for type {args.type!r}")
 
