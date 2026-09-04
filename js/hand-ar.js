@@ -1,5 +1,6 @@
-const MP_VERSION = '0.10.22';
+const MP_VERSION = '0.10.22-rc.20250304';
 const MP_ROOT = `https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${MP_VERSION}`;
+const MP_MODULE = `${MP_ROOT}/vision_bundle.mjs`;
 const HAND_MODEL = 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task';
 
 export class HandARController {
@@ -28,9 +29,11 @@ export class HandARController {
 
   async initModel() {
     if (this.handLandmarker) return;
-    this.status('Camera active · loading MediaPipe hand detector…');
+    this.status(`Camera active · loading MediaPipe ${MP_VERSION} hand detector…`);
 
-    const { FilesetResolver, HandLandmarker } = await import(MP_ROOT);
+    // Import the actual ESM bundle, not the npm package root. The package root
+    // is not a browser module URL and caused the v0.2.2 initialization failure.
+    const { FilesetResolver, HandLandmarker } = await import(MP_MODULE);
     const vision = await FilesetResolver.forVisionTasks(`${MP_ROOT}/wasm`);
     const options = {
       baseOptions: { modelAssetPath: HAND_MODEL },
