@@ -67,7 +67,7 @@ async function tryLocalSwc(bodyId, signal) {
   try {
     const response = await fetch(url, { cache: 'no-store', signal });
     if (!response.ok) return null;
-    return parseSWC(await response.text(), bodyId, OFFICIAL_EXAMPLES[bodyId], 'local-swc');
+    return parseSWC(await response.text(), bodyId, OFFICIAL_EXAMPLES[bodyId], 'local-export');
   } catch (error) {
     if (error?.name === 'AbortError') throw error;
     return null;
