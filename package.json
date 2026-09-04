@@ -1,0 +1,9 @@
+{
+  "name": "male-fly-connectome-ar",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check:js": "node --check js/config.js && node --check js/swc-loader.js && node --check js/connectome.js && node --check js/hand-ar.js && node --check js/app.js"
+  }
+}
