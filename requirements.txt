@@ -1,0 +1,2 @@
+neuprint-python>=0.6.3,<0.7
+pandas>=2.2,<3
