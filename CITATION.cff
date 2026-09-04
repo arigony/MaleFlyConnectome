@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "Male Fly Connectome AR"
+message: "Please cite the MaleCNS dataset/article in addition to this software when using derived connectome data."
+type: software
+authors:
+  - family-names: "Souto"
+    given-names: "Andre Arigony"
+version: 0.2.0
+date-released: 2026-09-04
+license: MIT
+repository-code: "https://github.com/arigony/MaleFlyConnectome"
+url: "https://github.com/arigony/MaleFlyConnectome"
