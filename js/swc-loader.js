@@ -50,25 +50,54 @@ function validateLocalSkeleton(data, expectedBodyId) {
   return { ...data, bodyId, nodes, source: 'local-export' };
 }
 
+async function tryLocalJson(bodyId, signal) {
+  const url = `./data/skeletons/${encodeURIComponent(bodyId)}.json`;
+  try {
+    const response = await fetch(url, { cache: 'no-store', signal });
+    if (!response.ok) return null;
+    return validateLocalSkeleton(await response.json(), bodyId);
+  } catch (error) {
+    if (error?.name === 'AbortError') throw error;
+    return null;
+  }
+}
+
+async function tryLocalSwc(bodyId, signal) {
+  const url = `./data/skeletons/${encodeURIComponent(bodyId)}.swc`;
+  try {
+    const response = await fetch(url, { cache: 'no-store', signal });
+    if (!response.ok) return null;
+    return parseSWC(await response.text(), bodyId, OFFICIAL_EXAMPLES[bodyId], 'local-swc');
+  } catch (error) {
+    if (error?.name === 'AbortError') throw error;
+    return null;
+  }
+}
+
 export async function fetchSkeleton(bodyId, { signal } = {}) {
   bodyId = String(bodyId).trim();
   if (!/^\d+$/.test(bodyId)) throw new Error('bodyId must be numeric.');
 
-  const localUrl = `./data/skeletons/${encodeURIComponent(bodyId)}.json`;
+  // Reproducible publication/demo path: prefer data pinned in this repository.
+  // This avoids depending on cross-origin bucket configuration in the browser.
+  const localJson = await tryLocalJson(bodyId, signal);
+  if (localJson) return localJson;
+
+  const localSwc = await tryLocalSwc(bodyId, signal);
+  if (localSwc) return localSwc;
+
+  // Convenience fallback for arbitrary body IDs. This can fail in browsers if
+  // the upstream bucket does not expose a compatible CORS policy.
+  const remoteUrl = `${SWC_BASE}${encodeURIComponent(bodyId)}.swc`;
+  let response;
   try {
-    const rLocal = await fetch(localUrl, { cache: 'no-store', signal });
-    if (rLocal.ok) {
-      const parsed = validateLocalSkeleton(await rLocal.json(), bodyId);
-      if (parsed) return parsed;
-    }
+    response = await fetch(remoteUrl, { signal, mode: 'cors' });
   } catch (error) {
     if (error?.name === 'AbortError') throw error;
+    throw new Error(`Skeleton ${bodyId} is not bundled locally and direct MaleCNS loading was blocked by the browser. Export/cache it locally for reproducible use.`);
   }
-
-  const remoteUrl = `${SWC_BASE}${encodeURIComponent(bodyId)}.swc`;
-  const r = await fetch(remoteUrl, { signal });
-  if (!r.ok) throw new Error(`Skeleton ${bodyId}: HTTP ${r.status}`);
-  return parseSWC(await r.text(), bodyId, OFFICIAL_EXAMPLES[bodyId], remoteUrl);
+  if (!response.ok) throw new Error(`Skeleton ${bodyId}: HTTP ${response.status}`);
+  return parseSWC(await response.text(), bodyId, OFFICIAL_EXAMPLES[bodyId], remoteUrl);
 }
 
 export function countSegments(skeleton) {
