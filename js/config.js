@@ -1,4 +1,4 @@
-export const APP_VERSION = '0.2.3';
+export const APP_VERSION = '0.2.4';
 export const DATASET = 'male-cns:v1.0';
 export const SWC_BASE = 'https://storage.googleapis.com/flyem-male-cns/v1.0/segmentation/skeletons-malecns/skeletons-swc/';
 
