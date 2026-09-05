@@ -19,6 +19,12 @@ export class HandARController {
     this.lastHandSeen = 0;
     this.lastStatus = '';
     this.detectionErrorReported = false;
+    this.vision = null;
+    this.HandLandmarker = null;
+    this.switchingBackend = false;
+    this.gpuFallbackAttempted = false;
+    this.isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.matchMedia?.('(pointer: coarse)').matches;
+    this.inferenceInterval = this.isMobile ? 60 : 33;
   }
 
   status(text) {
@@ -27,32 +33,69 @@ export class HandARController {
     this.onStatus(text);
   }
 
+  handOptions(backend = 'CPU') {
+    const baseOptions = { modelAssetPath: HAND_MODEL };
+    if (backend === 'GPU') baseOptions.delegate = 'GPU';
+    return {
+      baseOptions,
+      runningMode: 'VIDEO',
+      numHands: 1,
+      minHandDetectionConfidence: 0.35,
+      minHandPresenceConfidence: 0.35,
+      minTrackingConfidence: 0.35
+    };
+  }
+
+  async createDetector(backend) {
+    return this.HandLandmarker.createFromOptions(this.vision, this.handOptions(backend));
+  }
+
   async initModel() {
     if (this.handLandmarker) return;
     this.status(`Camera active · loading MediaPipe ${MP_VERSION} hand detector…`);
 
     const { FilesetResolver, HandLandmarker } = await import(MP_MODULE);
-    const vision = await FilesetResolver.forVisionTasks(`${MP_ROOT}/wasm`);
-    const options = {
-      baseOptions: { modelAssetPath: HAND_MODEL },
-      runningMode: 'VIDEO',
-      numHands: 1,
-      minHandDetectionConfidence: 0.5,
-      minHandPresenceConfidence: 0.5,
-      minTrackingConfidence: 0.5
-    };
+    this.HandLandmarker = HandLandmarker;
+    this.vision = await FilesetResolver.forVisionTasks(`${MP_ROOT}/wasm`);
+
+    // Mobile Chromium/WebView devices can initialize the MediaPipe GPU delegate
+    // successfully yet return no hand landmarks. CPU-first is slower but much
+    // more reliable on Android/iOS, and the lower camera resolution keeps it usable.
+    if (this.isMobile) {
+      this.status('Mobile browser detected · starting reliable CPU hand tracking…');
+      this.handLandmarker = await this.createDetector('CPU');
+      this.backend = 'CPU';
+      return;
+    }
 
     try {
-      this.handLandmarker = await HandLandmarker.createFromOptions(vision, {
-        ...options,
-        baseOptions: { ...options.baseOptions, delegate: 'GPU' }
-      });
+      this.handLandmarker = await this.createDetector('GPU');
       this.backend = 'GPU';
     } catch (gpuError) {
       console.warn('MediaPipe GPU delegate failed; retrying on CPU.', gpuError);
       this.status('GPU hand tracking unavailable · retrying on CPU…');
-      this.handLandmarker = await HandLandmarker.createFromOptions(vision, options);
+      this.handLandmarker = await this.createDetector('CPU');
       this.backend = 'CPU';
+    }
+  }
+
+  async switchToCPU(reason = 'GPU produced no hand landmarks') {
+    if (this.switchingBackend || this.backend === 'CPU' || !this.HandLandmarker || !this.vision) return;
+    this.switchingBackend = true;
+    this.gpuFallbackAttempted = true;
+    this.status(`${reason} · switching to CPU tracking…`);
+    try {
+      this.handLandmarker?.close?.();
+      this.handLandmarker = await this.createDetector('CPU');
+      this.backend = 'CPU';
+      this.lastHandSeen = performance.now();
+      this.lastVideoTime = -1;
+      this.status('CPU hand tracking ready · show an open palm near the center.');
+    } catch (error) {
+      console.error('CPU hand tracking fallback failed.', error);
+      this.status(`CPU tracking fallback failed: ${error?.message || error}`);
+    } finally {
+      this.switchingBackend = false;
     }
   }
 
@@ -60,8 +103,9 @@ export class HandARController {
     const preferred = {
       video: {
         facingMode: { ideal: 'environment' },
-        width: { ideal: 1280 },
-        height: { ideal: 720 }
+        width: { ideal: 640 },
+        height: { ideal: 480 },
+        frameRate: { ideal: 30, max: 30 }
       },
       audio: false
     };
@@ -71,7 +115,10 @@ export class HandARController {
     } catch (preferredError) {
       console.warn('Rear-camera request failed; retrying with a generic camera.', preferredError);
       this.status('Rear camera unavailable · retrying with available camera…');
-      this.stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+      this.stream = await navigator.mediaDevices.getUserMedia({
+        video: { width: { ideal: 640 }, height: { ideal: 480 }, frameRate: { ideal: 30, max: 30 } },
+        audio: false
+      });
     }
 
     this.video.srcObject = this.stream;
@@ -108,6 +155,7 @@ export class HandARController {
     this.lastInferenceAt = 0;
     this.lastHandSeen = performance.now();
     this.detectionErrorReported = false;
+    this.gpuFallbackAttempted = false;
 
     try {
       await this.initModel();
@@ -116,7 +164,7 @@ export class HandARController {
       throw new Error(`Hand detector failed to initialize: ${error?.message || error}`);
     }
 
-    this.status(`AR ready · camera active · hand tracking ${this.backend} · open hand to anchor, close hand to zoom.`);
+    this.status(`AR ready · camera active · hand tracking ${this.backend} · show an open palm to anchor.`);
   }
 
   stop() {
@@ -158,8 +206,8 @@ export class HandARController {
   }
 
   update(now) {
-    if (!this.active || !this.handLandmarker || this.video.readyState < 2) return false;
-    if (now - this.lastInferenceAt < 33) return false;
+    if (!this.active || !this.handLandmarker || this.video.readyState < 2 || this.switchingBackend) return false;
+    if (now - this.lastInferenceAt < this.inferenceInterval) return false;
     if (this.video.currentTime === this.lastVideoTime) return false;
 
     this.lastInferenceAt = now;
@@ -175,13 +223,19 @@ export class HandARController {
         this.status(`Hand tracking error: ${error?.message || error}`);
         this.detectionErrorReported = true;
       }
+      if (this.backend === 'GPU' && !this.gpuFallbackAttempted) void this.switchToCPU('GPU inference failed');
       return false;
     }
 
     const hand = result.landmarks?.[0];
     if (!hand) {
-      if (performance.now() - this.lastHandSeen > 900) {
-        this.status(`Camera active · ${this.backend} tracking ready · move a hand near the center.`);
+      const missingFor = performance.now() - this.lastHandSeen;
+      if (this.backend === 'GPU' && !this.gpuFallbackAttempted && missingFor > 1800) {
+        void this.switchToCPU('No hand detected on GPU');
+        return false;
+      }
+      if (missingFor > 900) {
+        this.status(`Camera active · ${this.backend} tracking ready · show an open palm near the center.`);
       }
       return false;
     }
@@ -195,8 +249,6 @@ export class HandARController {
 
     const pCenter = this.normalizedToWorld(palm);
 
-    // Use palm dimensions in visible-screen coordinates as a non-metric depth
-    // proxy. Palm dimensions remain comparatively stable when fingers curl.
     const screen = hand.map((lm) => this.landmarkToViewport(lm));
     const s0 = screen[0];
     const s5 = screen[5];
@@ -209,10 +261,6 @@ export class HandARController {
     const apparentPalmSize = Math.sqrt(palmWidthScreen * palmLengthScreen);
     const angle = -Math.atan2(s17.y - s5.y, s17.x - s5.x);
 
-    // Gesture zoom: compare each fingertip with its MCP joint. This ratio is
-    // large for an open hand and falls as the fingers close toward a fist.
-    // Closing the hand therefore magnifies the connectome while reopening it
-    // returns toward the distance-based scale.
     const fingerPairs = [[8, 5], [12, 9], [16, 13], [20, 17]];
     const fingerExtension = fingerPairs.reduce(
       (sum, [tip, mcp]) => sum + d2(screen[tip], screen[mcp]) / palmWidthScreen,
@@ -221,14 +269,14 @@ export class HandARController {
     const closeAmount = clamp((1.35 - fingerExtension) / 0.85, 0, 1);
     const gestureZoom = 1 + closeAmount * 1.8;
 
-    this.sceneRoot.position.lerp(pCenter, 0.34);
+    this.sceneRoot.position.lerp(pCenter, 0.42);
 
     const distanceScale = clamp(apparentPalmSize * 4.8, 0.55, 2.4);
     const targetScale = clamp(distanceScale * gestureZoom, 0.55, 5.2);
-    const nextScale = this.sceneRoot.scale.x + (targetScale - this.sceneRoot.scale.x) * 0.30;
+    const nextScale = this.sceneRoot.scale.x + (targetScale - this.sceneRoot.scale.x) * 0.34;
     this.sceneRoot.scale.setScalar(nextScale);
 
-    this.sceneRoot.rotation.z += (angle - this.sceneRoot.rotation.z) * 0.24;
+    this.sceneRoot.rotation.z += (angle - this.sceneRoot.rotation.z) * 0.28;
     this.sceneRoot.rotation.x += (-0.28 - this.sceneRoot.rotation.x) * 0.10;
 
     const gestureState = closeAmount > 0.35 ? 'fist zoom active' : 'close hand to zoom';
