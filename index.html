@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#05070b" />
   <meta name="description" content="Research prototype for scientifically traceable 3D and hand-anchored AR exploration of the MaleCNS v1.0 Drosophila connectome." />
-  <title>Male Fly Connectome AR — v0.3.0</title>
+  <title>Male Fly Connectome AR — v0.4.0</title>
   <link rel="stylesheet" href="./css/style.css" />
   <script type="importmap">
     {
@@ -44,6 +44,15 @@
       </div>
       <button id="loadPair" class="primary">Load DNge104 L/R</button>
       <p class="hint">Official MaleCNS examples: DNge104_R = 12781; DNge104_L = 556329.</p>
+      <div class="row compact-row">
+        <select id="lodLevel" aria-label="Multiscale level">
+          <option value="overview">LOD overview</option>
+          <option value="regional">LOD regional</option>
+          <option value="detailed">LOD detailed</option>
+        </select>
+        <button id="loadLod">Load LOD</button>
+      </div>
+      <p class="hint">Loads the current topology-preserving multiscale research bundle. This cache is a circuit-scale validation set; the same pipeline is designed to scale to type-level/whole-CNS preprocessing.</p>
     </section>
 
     <section>
