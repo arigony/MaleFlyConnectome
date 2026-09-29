@@ -8,7 +8,7 @@ The scientific design principle is strict: **AI may assist software development,
 
 ## Current research status
 
-The browser prototype is currently **v0.3.1** and the preprocessing work has entered the **v0.4 multiscale/LOD research milestone**. It is not yet a validated scientific instrument. The repository currently provides:
+The browser prototype is currently **v0.4.0** and the preprocessing work has entered the **v0.4 multiscale/LOD research milestone**. It is not yet a validated scientific instrument. The repository currently provides:
 
 - loading of real MaleCNS SWC centerline skeletons by `bodyId`;
 - official DNge104 examples (`12781`, `556329`) as the default demonstrator;
@@ -20,6 +20,7 @@ The browser prototype is currently **v0.3.1** and the preprocessing work has ent
 - live FPS display for early mobile benchmarking;
 - data provenance, validation and licensing documentation;
 - a topology-preserving LOD preprocessing pipeline with per-level fidelity metrics and SHA-256 manifests;
+- direct browser loading of generated `overview`, `regional`, and `detailed` LOD bundles;
 - a Colab workflow for reproducible type-level whole-CNS preprocessing.
 
 ## Authoritative data source
