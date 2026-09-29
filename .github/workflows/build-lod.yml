@@ -13,6 +13,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: build-lod-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-lod:
     runs-on: ubuntu-latest
@@ -28,7 +32,13 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Resolve deterministic source timestamp
+        id: source-date
+        run: echo "epoch=$(git log -1 --format=%ct -- scripts/build_lod.py data/skeletons)" >> "$GITHUB_OUTPUT"
+
       - name: Build topology-preserving LOD bundles
+        env:
+          SOURCE_DATE_EPOCH: ${{ steps.source-date.outputs.epoch }}
         run: python scripts/build_lod.py --input data/skeletons --output data/lod
 
       - name: Validate LOD hashes and invariants
