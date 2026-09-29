@@ -2,7 +2,7 @@
 """Build topology-preserving multiscale render bundles from MaleCNS SWC skeletons."""
 
 from __future__ import annotations
-import argparse, hashlib, json, math
+import argparse, hashlib, json, math, os
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -253,7 +253,12 @@ def main():
             }
         metrics.append(row)
 
-    generated = datetime.now(timezone.utc).isoformat()
+    source_date_epoch = os.environ.get("SOURCE_DATE_EPOCH")
+    generated = (
+        datetime.fromtimestamp(int(source_date_epoch), timezone.utc).isoformat()
+        if source_date_epoch
+        else datetime.now(timezone.utc).isoformat()
+    )
     bounds_obj = {"min": global_bounds[:3], "max": global_bounds[3:]}
     file_manifest = []
 
