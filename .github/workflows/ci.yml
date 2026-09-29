@@ -19,4 +19,4 @@ jobs:
       - name: Check JavaScript syntax
         run: npm run check:js
       - name: Check Python syntax
-        run: python -m py_compile scripts/export_subset.py scripts/validate_export.py
+        run: python -m compileall -q scripts
