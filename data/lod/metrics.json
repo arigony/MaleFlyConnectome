@@ -2,7 +2,7 @@
   "schema": "maleflyconnectome-lod-metrics-v1",
   "dataset": "male-cns:v1.0",
   "coordinate_unit_nm": 8,
-  "generated_utc": "2026-09-29T16:52:17.263441+00:00",
+  "generated_utc": "2026-09-29T16:57:42+00:00",
   "neuron_count": 34,
   "bounds": {
     "min": [
