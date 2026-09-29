@@ -1,0 +1,1517 @@
+{
+  "schema": "maleflyconnectome-lod-metrics-v1",
+  "dataset": "male-cns:v1.0",
+  "coordinate_unit_nm": 8,
+  "generated_utc": "2026-09-29T16:52:17.263441+00:00",
+  "neuron_count": 34,
+  "bounds": {
+    "min": [
+      28800.0,
+      15616.0,
+      16192.0
+    ],
+    "max": [
+      69312.0,
+      68928.0,
+      131712.0
+    ]
+  },
+  "neurons": [
+    {
+      "bodyId": "10141",
+      "source_file": "data/skeletons/10141.swc",
+      "source_sha256": "a35912b8bd7d6eba8c103edd298c183a63b8332494970399259245f1f5886e80",
+      "original_nodes": 6148,
+      "original_segments": 6147,
+      "anchors": 1535,
+      "chains": 1534,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 3171,
+          "rendered_segments": 1637,
+          "segment_reduction_pct": 73.3691,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1535,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 3544,
+          "rendered_segments": 2010,
+          "segment_reduction_pct": 67.3011,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1535,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 5783,
+          "rendered_segments": 4249,
+          "segment_reduction_pct": 30.8769,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1535,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "10223",
+      "source_file": "data/skeletons/10223.swc",
+      "source_sha256": "994dabae1e400a89040ce4c0685596c961801bb0c6479296656a24b9d76b2dc9",
+      "original_nodes": 12571,
+      "original_segments": 12570,
+      "anchors": 1924,
+      "chains": 1923,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 4055,
+          "rendered_segments": 2132,
+          "segment_reduction_pct": 83.039,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1924,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 4800,
+          "rendered_segments": 2877,
+          "segment_reduction_pct": 77.1122,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1924,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 9818,
+          "rendered_segments": 7895,
+          "segment_reduction_pct": 37.1917,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1924,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "1054499659",
+      "source_file": "data/skeletons/1054499659.swc",
+      "source_sha256": "e35b54344d09362214cbaffe208c27efd7aff3b62dddb1dfeee12bd7db29a6b1",
+      "original_nodes": 13330,
+      "original_segments": 13329,
+      "anchors": 2446,
+      "chains": 2445,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 5025,
+          "rendered_segments": 2580,
+          "segment_reduction_pct": 80.6437,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 2446,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 5732,
+          "rendered_segments": 3287,
+          "segment_reduction_pct": 75.3395,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 2446,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 10809,
+          "rendered_segments": 8364,
+          "segment_reduction_pct": 37.2496,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 2446,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "1055278121",
+      "source_file": "data/skeletons/1055278121.swc",
+      "source_sha256": "07c2e536c3b84fbac5666c7172a00a9f2167ab2b9234e60865530fc31f610042",
+      "original_nodes": 10667,
+      "original_segments": 10666,
+      "anchors": 1689,
+      "chains": 1688,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 3515,
+          "rendered_segments": 1827,
+          "segment_reduction_pct": 82.8708,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1689,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 4123,
+          "rendered_segments": 2435,
+          "segment_reduction_pct": 77.1704,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1689,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 8217,
+          "rendered_segments": 6529,
+          "segment_reduction_pct": 38.7868,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1689,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "10732",
+      "source_file": "data/skeletons/10732.swc",
+      "source_sha256": "dd76e00e62f633d871eab96c7f61f03b6debe2bdcfb27de00563a66ed2ec0383",
+      "original_nodes": 13538,
+      "original_segments": 13537,
+      "anchors": 2151,
+      "chains": 2150,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 4539,
+          "rendered_segments": 2389,
+          "segment_reduction_pct": 82.3521,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 2151,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 5274,
+          "rendered_segments": 3124,
+          "segment_reduction_pct": 76.9225,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 2151,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 10678,
+          "rendered_segments": 8528,
+          "segment_reduction_pct": 37.0023,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 2151,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "11466",
+      "source_file": "data/skeletons/11466.swc",
+      "source_sha256": "a2e8ba7ee3cb64929f913c37abf21120d3198582e7d88fac8880aaf2be71967c",
+      "original_nodes": 43109,
+      "original_segments": 43108,
+      "anchors": 5183,
+      "chains": 5182,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 11119,
+          "rendered_segments": 5937,
+          "segment_reduction_pct": 86.2276,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 5183,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 13570,
+          "rendered_segments": 8388,
+          "segment_reduction_pct": 80.5419,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 5183,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 30387,
+          "rendered_segments": 25205,
+          "segment_reduction_pct": 41.5306,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 5183,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "11687",
+      "source_file": "data/skeletons/11687.swc",
+      "source_sha256": "79e8634b220931e30948ae2056ab2b6fc5265667e41d308b25959d02cb14b65a",
+      "original_nodes": 10789,
+      "original_segments": 10788,
+      "anchors": 1840,
+      "chains": 1839,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 3823,
+          "rendered_segments": 1984,
+          "segment_reduction_pct": 81.6092,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1840,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 4357,
+          "rendered_segments": 2518,
+          "segment_reduction_pct": 76.6593,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1840,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 8460,
+          "rendered_segments": 6621,
+          "segment_reduction_pct": 38.6263,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1840,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "12218",
+      "source_file": "data/skeletons/12218.swc",
+      "source_sha256": "4a835bfe2cdcdb9896fa70150bf1a2f3b9844ecdf1fd34a4a7c15e66204eabbc",
+      "original_nodes": 11289,
+      "original_segments": 11287,
+      "anchors": 1658,
+      "chains": 1656,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 3487,
+          "rendered_segments": 1831,
+          "segment_reduction_pct": 83.7778,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1658,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 4095,
+          "rendered_segments": 2439,
+          "segment_reduction_pct": 78.3911,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1658,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 8467,
+          "rendered_segments": 6811,
+          "segment_reduction_pct": 39.6562,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1658,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "12222",
+      "source_file": "data/skeletons/12222.swc",
+      "source_sha256": "ebdf13c381eee80f3525c82949f517612ddb405d7f3c86e6dcf490f91661d28f",
+      "original_nodes": 10603,
+      "original_segments": 10601,
+      "anchors": 1751,
+      "chains": 1749,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 3622,
+          "rendered_segments": 1873,
+          "segment_reduction_pct": 82.3319,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1751,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 4141,
+          "rendered_segments": 2392,
+          "segment_reduction_pct": 77.4361,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1751,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 8239,
+          "rendered_segments": 6490,
+          "segment_reduction_pct": 38.7794,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1751,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "12781",
+      "source_file": "data/skeletons/12781.swc",
+      "source_sha256": "84f14c2f8b98da664db2c322c6f3f47f83b61c412207bddfa67e2315b86fc699",
+      "original_nodes": 15945,
+      "original_segments": 15942,
+      "anchors": 3786,
+      "chains": 3783,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 7698,
+          "rendered_segments": 3915,
+          "segment_reduction_pct": 75.4422,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 3786,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 8485,
+          "rendered_segments": 4702,
+          "segment_reduction_pct": 70.5056,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 3786,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 14404,
+          "rendered_segments": 10621,
+          "segment_reduction_pct": 33.3772,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 3786,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "15884",
+      "source_file": "data/skeletons/15884.swc",
+      "source_sha256": "73bd10601d670399da20fe51dcc648ecdfcc9a6e59c5aceb05251a9b12b62421",
+      "original_nodes": 8415,
+      "original_segments": 8414,
+      "anchors": 2188,
+      "chains": 2187,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 4432,
+          "rendered_segments": 2245,
+          "segment_reduction_pct": 73.3183,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 2188,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 4800,
+          "rendered_segments": 2613,
+          "segment_reduction_pct": 68.9446,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 2188,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 7839,
+          "rendered_segments": 5652,
+          "segment_reduction_pct": 32.8262,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 2188,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "162471",
+      "source_file": "data/skeletons/162471.swc",
+      "source_sha256": "85dd0a6be21c419d0d3dff635d38fadadd06a7bff1065c492727d12738bf4051",
+      "original_nodes": 6925,
+      "original_segments": 6924,
+      "anchors": 1727,
+      "chains": 1726,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 3504,
+          "rendered_segments": 1778,
+          "segment_reduction_pct": 74.3212,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1727,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 3829,
+          "rendered_segments": 2103,
+          "segment_reduction_pct": 69.6274,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1727,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 6374,
+          "rendered_segments": 4648,
+          "segment_reduction_pct": 32.8712,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1727,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "16510",
+      "source_file": "data/skeletons/16510.swc",
+      "source_sha256": "775035ad5ee2f7a91f7ae7bfb1043647164f26639bd71dd252f21a5be56e7a8a",
+      "original_nodes": 10251,
+      "original_segments": 10250,
+      "anchors": 3047,
+      "chains": 3046,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 6137,
+          "rendered_segments": 3091,
+          "segment_reduction_pct": 69.8439,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 3047,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 6544,
+          "rendered_segments": 3498,
+          "segment_reduction_pct": 65.8732,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 3047,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 10169,
+          "rendered_segments": 7123,
+          "segment_reduction_pct": 30.5073,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 3047,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "18050",
+      "source_file": "data/skeletons/18050.swc",
+      "source_sha256": "dad1f1cb34721619649c2c2363f04c6386915f7f80166fc59ea43d4c1f24eeae",
+      "original_nodes": 9829,
+      "original_segments": 9827,
+      "anchors": 2999,
+      "chains": 2997,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 6037,
+          "rendered_segments": 3040,
+          "segment_reduction_pct": 69.0648,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 2999,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 6456,
+          "rendered_segments": 3459,
+          "segment_reduction_pct": 64.8011,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 2999,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 9926,
+          "rendered_segments": 6929,
+          "segment_reduction_pct": 29.4902,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 2999,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "21763",
+      "source_file": "data/skeletons/21763.swc",
+      "source_sha256": "65e64e883e811fabdfa2b4ab047a45de6dbcce158cc344995b974418b0d12140",
+      "original_nodes": 12669,
+      "original_segments": 12667,
+      "anchors": 3387,
+      "chains": 3385,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 6859,
+          "rendered_segments": 3474,
+          "segment_reduction_pct": 72.5744,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 3387,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 7562,
+          "rendered_segments": 4177,
+          "segment_reduction_pct": 67.0246,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 3387,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 12183,
+          "rendered_segments": 8798,
+          "segment_reduction_pct": 30.5439,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 3387,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "25185",
+      "source_file": "data/skeletons/25185.swc",
+      "source_sha256": "62f7ba1922bdf16e0ca24f6958919812a993b54e0fe79182cce7361d6caf541c",
+      "original_nodes": 8507,
+      "original_segments": 8505,
+      "anchors": 1287,
+      "chains": 1285,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 2688,
+          "rendered_segments": 1403,
+          "segment_reduction_pct": 83.5038,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1287,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 3162,
+          "rendered_segments": 1877,
+          "segment_reduction_pct": 77.9306,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1287,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 6439,
+          "rendered_segments": 5154,
+          "segment_reduction_pct": 39.4004,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1287,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "27797",
+      "source_file": "data/skeletons/27797.swc",
+      "source_sha256": "eee3895684f68eb4801aa7993e4a9966523efba74df6c3526ea1acee62ffd16e",
+      "original_nodes": 8752,
+      "original_segments": 8751,
+      "anchors": 1145,
+      "chains": 1144,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 2434,
+          "rendered_segments": 1290,
+          "segment_reduction_pct": 85.2588,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1145,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 2958,
+          "rendered_segments": 1814,
+          "segment_reduction_pct": 79.2709,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1145,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 6330,
+          "rendered_segments": 5186,
+          "segment_reduction_pct": 40.7382,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1145,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "29450",
+      "source_file": "data/skeletons/29450.swc",
+      "source_sha256": "787eb1ad20468336e8f08331632ed247590814496978973c6b769cfbd9b400cc",
+      "original_nodes": 5128,
+      "original_segments": 5127,
+      "anchors": 830,
+      "chains": 829,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 1736,
+          "rendered_segments": 907,
+          "segment_reduction_pct": 82.3093,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 830,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 2012,
+          "rendered_segments": 1183,
+          "segment_reduction_pct": 76.9261,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 830,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 4069,
+          "rendered_segments": 3240,
+          "segment_reduction_pct": 36.8051,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 830,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "513052",
+      "source_file": "data/skeletons/513052.swc",
+      "source_sha256": "1ce9383f7ce47c9ec814f4a4d3e83a3afa5f82e93e2ecd1c6ca463d2b1d17cd8",
+      "original_nodes": 6310,
+      "original_segments": 6309,
+      "anchors": 1630,
+      "chains": 1629,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 3343,
+          "rendered_segments": 1714,
+          "segment_reduction_pct": 72.8325,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1630,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 3742,
+          "rendered_segments": 2113,
+          "segment_reduction_pct": 66.5082,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1630,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 6058,
+          "rendered_segments": 4429,
+          "segment_reduction_pct": 29.7987,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1630,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "522822",
+      "source_file": "data/skeletons/522822.swc",
+      "source_sha256": "e9917e694b99ef984266d3326d717fcdd7bd052f04a9f4cdc15dd3d2644f6d34",
+      "original_nodes": 9267,
+      "original_segments": 9266,
+      "anchors": 2427,
+      "chains": 2426,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 4903,
+          "rendered_segments": 2477,
+          "segment_reduction_pct": 73.2679,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 2427,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 5364,
+          "rendered_segments": 2938,
+          "segment_reduction_pct": 68.2927,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 2427,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 8747,
+          "rendered_segments": 6321,
+          "segment_reduction_pct": 31.7829,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 2427,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "556329",
+      "source_file": "data/skeletons/556329.swc",
+      "source_sha256": "af862b1065dd08bd16956e108ed785361342d584eb357f16fdc116bc26a2f7ad",
+      "original_nodes": 17298,
+      "original_segments": 17295,
+      "anchors": 4188,
+      "chains": 4185,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 8498,
+          "rendered_segments": 4313,
+          "segment_reduction_pct": 75.0622,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 4188,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 9370,
+          "rendered_segments": 5185,
+          "segment_reduction_pct": 70.0202,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 4188,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 15845,
+          "rendered_segments": 11660,
+          "segment_reduction_pct": 32.5817,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 4188,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "56630",
+      "source_file": "data/skeletons/56630.swc",
+      "source_sha256": "f0d05c7e7278fa7ea1322edf88c726729130238bdc52ab67252b266c6793e6aa",
+      "original_nodes": 5040,
+      "original_segments": 5039,
+      "anchors": 369,
+      "chains": 368,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 844,
+          "rendered_segments": 476,
+          "segment_reduction_pct": 90.5537,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 369,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 1107,
+          "rendered_segments": 739,
+          "segment_reduction_pct": 85.3344,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 369,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 3013,
+          "rendered_segments": 2645,
+          "segment_reduction_pct": 47.5094,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 369,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "58725",
+      "source_file": "data/skeletons/58725.swc",
+      "source_sha256": "6661b618e163a6bbe57ad9eb6460100debb8c6a40b9d71a8b94946e3b04fc71c",
+      "original_nodes": 8348,
+      "original_segments": 8347,
+      "anchors": 2260,
+      "chains": 2259,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 4568,
+          "rendered_segments": 2309,
+          "segment_reduction_pct": 72.3374,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 2260,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 4892,
+          "rendered_segments": 2633,
+          "segment_reduction_pct": 68.4557,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 2260,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 7851,
+          "rendered_segments": 5592,
+          "segment_reduction_pct": 33.0059,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 2260,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "60372",
+      "source_file": "data/skeletons/60372.swc",
+      "source_sha256": "ee6fa281cf5ac746846e079c5c3e7cb3640b73b192d83919c347f97520e4c019",
+      "original_nodes": 4847,
+      "original_segments": 4845,
+      "anchors": 310,
+      "chains": 308,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 716,
+          "rendered_segments": 408,
+          "segment_reduction_pct": 91.5789,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 310,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 994,
+          "rendered_segments": 686,
+          "segment_reduction_pct": 85.8411,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 310,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 2764,
+          "rendered_segments": 2456,
+          "segment_reduction_pct": 49.3086,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 310,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "66518",
+      "source_file": "data/skeletons/66518.swc",
+      "source_sha256": "a0a2cd6cf87573973a40575ecc405afc2b90bc12b8368116cf76d34937af5929",
+      "original_nodes": 8404,
+      "original_segments": 8403,
+      "anchors": 2343,
+      "chains": 2342,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 4727,
+          "rendered_segments": 2385,
+          "segment_reduction_pct": 71.6173,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 2343,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 5050,
+          "rendered_segments": 2708,
+          "segment_reduction_pct": 67.7734,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 2343,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 8054,
+          "rendered_segments": 5712,
+          "segment_reduction_pct": 32.0243,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 2343,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "800098",
+      "source_file": "data/skeletons/800098.swc",
+      "source_sha256": "f9957abfc376c8a9c4afb48d2725ad09d8d6cda0940c91026bbe7e72f9937b41",
+      "original_nodes": 14539,
+      "original_segments": 14538,
+      "anchors": 3886,
+      "chains": 3885,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 7865,
+          "rendered_segments": 3980,
+          "segment_reduction_pct": 72.6235,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 3886,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 8570,
+          "rendered_segments": 4685,
+          "segment_reduction_pct": 67.7741,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 3886,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 13919,
+          "rendered_segments": 10034,
+          "segment_reduction_pct": 30.9809,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 3886,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "800402",
+      "source_file": "data/skeletons/800402.swc",
+      "source_sha256": "f2ffceb4d722e6ac4056f64f421dc4b59fc5bc0296174228a85b176c4148fb00",
+      "original_nodes": 10356,
+      "original_segments": 10354,
+      "anchors": 1805,
+      "chains": 1803,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 3741,
+          "rendered_segments": 1938,
+          "segment_reduction_pct": 81.2826,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1805,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 4302,
+          "rendered_segments": 2499,
+          "segment_reduction_pct": 75.8644,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1805,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 8344,
+          "rendered_segments": 6541,
+          "segment_reduction_pct": 36.8263,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1805,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "800651",
+      "source_file": "data/skeletons/800651.swc",
+      "source_sha256": "0caa363401aeaa5bae19c2f08ad9819f6664909d3dd71fb874ac50eafcc80eb6",
+      "original_nodes": 12650,
+      "original_segments": 12649,
+      "anchors": 2341,
+      "chains": 2340,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 4809,
+          "rendered_segments": 2469,
+          "segment_reduction_pct": 80.4807,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 2341,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 5495,
+          "rendered_segments": 3155,
+          "segment_reduction_pct": 75.0573,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 2341,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 10220,
+          "rendered_segments": 7880,
+          "segment_reduction_pct": 37.7026,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 2341,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "800919",
+      "source_file": "data/skeletons/800919.swc",
+      "source_sha256": "83510836581f7e7d45e9f8f1b6ed9fe015551bb7d62c6428c1526a48e26d51d1",
+      "original_nodes": 6782,
+      "original_segments": 6781,
+      "anchors": 1503,
+      "chains": 1502,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 3056,
+          "rendered_segments": 1554,
+          "segment_reduction_pct": 77.083,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1503,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 3410,
+          "rendered_segments": 1908,
+          "segment_reduction_pct": 71.8626,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1503,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 6034,
+          "rendered_segments": 4532,
+          "segment_reduction_pct": 33.1662,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1503,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "801202",
+      "source_file": "data/skeletons/801202.swc",
+      "source_sha256": "f83d48f8eb6b56920583d4e5f35b66a64d0895c426a417a67088bc487dddd695",
+      "original_nodes": 9122,
+      "original_segments": 9121,
+      "anchors": 1734,
+      "chains": 1733,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 3575,
+          "rendered_segments": 1842,
+          "segment_reduction_pct": 79.8048,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1734,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 4057,
+          "rendered_segments": 2324,
+          "segment_reduction_pct": 74.5203,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1734,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 7463,
+          "rendered_segments": 5730,
+          "segment_reduction_pct": 37.1779,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1734,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "801308",
+      "source_file": "data/skeletons/801308.swc",
+      "source_sha256": "638f39b71f56567621eb7bcca46661d0d7f13f278c0547c1bdb04930992085c5",
+      "original_nodes": 6507,
+      "original_segments": 6506,
+      "anchors": 1482,
+      "chains": 1481,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 3023,
+          "rendered_segments": 1542,
+          "segment_reduction_pct": 76.2988,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1482,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 3357,
+          "rendered_segments": 1876,
+          "segment_reduction_pct": 71.1651,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1482,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 5832,
+          "rendered_segments": 4351,
+          "segment_reduction_pct": 33.1233,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1482,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "801780",
+      "source_file": "data/skeletons/801780.swc",
+      "source_sha256": "f06ff992ce133bd4df2f43d159924a2af0c8493a0ae1105d39bbdc9726b40f45",
+      "original_nodes": 12397,
+      "original_segments": 12396,
+      "anchors": 2133,
+      "chains": 2132,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 4398,
+          "rendered_segments": 2266,
+          "segment_reduction_pct": 81.7199,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 2133,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 5108,
+          "rendered_segments": 2976,
+          "segment_reduction_pct": 75.9923,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 2133,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 9903,
+          "rendered_segments": 7771,
+          "segment_reduction_pct": 37.3104,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 2133,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "802274",
+      "source_file": "data/skeletons/802274.swc",
+      "source_sha256": "1abf92b3373ebb200e8e1f754537c98a110f5f8a9056d15dd93e12e80067a973",
+      "original_nodes": 9902,
+      "original_segments": 9900,
+      "anchors": 1596,
+      "chains": 1594,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 3300,
+          "rendered_segments": 1706,
+          "segment_reduction_pct": 82.7677,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 1596,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 3819,
+          "rendered_segments": 2225,
+          "segment_reduction_pct": 77.5253,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 1596,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 7581,
+          "rendered_segments": 5987,
+          "segment_reduction_pct": 39.5253,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 1596,
+          "topology_preserved_by_construction": true
+        }
+      }
+    },
+    {
+      "bodyId": "903446",
+      "source_file": "data/skeletons/903446.swc",
+      "source_sha256": "6b4c06264c5e2bd573db5e7cee996b95cbd4fcf77b644cef667d6c5cdcef1d00",
+      "original_nodes": 13780,
+      "original_segments": 13779,
+      "anchors": 2497,
+      "chains": 2496,
+      "levels": {
+        "overview": {
+          "tolerance_units": 256.0,
+          "tolerance_nm": 2048.0,
+          "rendered_chain_points": 5135,
+          "rendered_segments": 2639,
+          "segment_reduction_pct": 80.8477,
+          "rdp_error_bound_units": 256.0,
+          "rdp_error_bound_nm": 2048.0,
+          "anchors_retained": 2497,
+          "topology_preserved_by_construction": true
+        },
+        "regional": {
+          "tolerance_units": 96.0,
+          "tolerance_nm": 768.0,
+          "rendered_chain_points": 5845,
+          "rendered_segments": 3349,
+          "segment_reduction_pct": 75.6949,
+          "rdp_error_bound_units": 96.0,
+          "rdp_error_bound_nm": 768.0,
+          "anchors_retained": 2497,
+          "topology_preserved_by_construction": true
+        },
+        "detailed": {
+          "tolerance_units": 24.0,
+          "tolerance_nm": 192.0,
+          "rendered_chain_points": 11075,
+          "rendered_segments": 8579,
+          "segment_reduction_pct": 37.7386,
+          "rdp_error_bound_units": 24.0,
+          "rdp_error_bound_nm": 192.0,
+          "anchors_retained": 2497,
+          "topology_preserved_by_construction": true
+        }
+      }
+    }
+  ]
+}

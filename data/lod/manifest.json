@@ -1,0 +1,69 @@
+{
+  "schema": "maleflyconnectome-lod-manifest-v1",
+  "dataset": "male-cns:v1.0",
+  "coordinate_unit_nm": 8,
+  "generated_utc": "2026-09-29T16:52:17.263441+00:00",
+  "source_directory": "data/skeletons",
+  "neuron_count": 34,
+  "bounds": {
+    "min": [
+      28800.0,
+      15616.0,
+      16192.0
+    ],
+    "max": [
+      69312.0,
+      68928.0,
+      131712.0
+    ]
+  },
+  "levels": [
+    {
+      "name": "overview",
+      "tolerance_units": 256.0,
+      "tolerance_nm": 2048.0
+    },
+    {
+      "name": "regional",
+      "tolerance_units": 96.0,
+      "tolerance_nm": 768.0
+    },
+    {
+      "name": "detailed",
+      "tolerance_units": 24.0,
+      "tolerance_nm": 192.0
+    }
+  ],
+  "files": [
+    {
+      "level": "overview",
+      "path": "data/lod/overview.json",
+      "bytes": 3759977,
+      "sha256": "b58d4586376370ea6788c5ad164c5f6d2e0109e7564f5d48ef03c77a5f9c0cbd"
+    },
+    {
+      "level": "regional",
+      "path": "data/lod/regional.json",
+      "bytes": 4709016,
+      "sha256": "05afe24c1382491cfdfb6a76ab9f5a06d6189894d77ff9fce0c129479aee0bd3"
+    },
+    {
+      "level": "detailed",
+      "path": "data/lod/detailed.json",
+      "bytes": 11574276,
+      "sha256": "64d48f57b3cf4fded7caa468fd64a08389d0998a7d0269865dadbcc7b94876d4"
+    },
+    {
+      "path": "data/lod/metrics.json",
+      "bytes": 51116,
+      "sha256": "831c9b4ef93965bf313155fe0c2e89ec6b77d2794e7d43aaf3895aeabd97adec"
+    }
+  ],
+  "scientific_guarantees": {
+    "branch_graph_preserved_by_construction": true,
+    "roots_branchpoints_leaves_retained": true,
+    "swc_type_transition_anchors_retained": true,
+    "connectivity_modified": false,
+    "ai_generated_biology": false
+  }
+}
