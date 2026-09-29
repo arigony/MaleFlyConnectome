@@ -8,17 +8,19 @@ The scientific design principle is strict: **AI may assist software development,
 
 ## Current research status
 
-Version **0.2.0** is an early technical prototype, not yet a validated scientific instrument. It currently provides:
+The browser prototype is currently **v0.3.1** and the preprocessing work has entered the **v0.4 multiscale/LOD research milestone**. It is not yet a validated scientific instrument. The repository currently provides:
 
 - loading of real MaleCNS SWC centerline skeletons by `bodyId`;
 - official DNge104 examples (`12781`, `556329`) as the default demonstrator;
 - one global affine display normalization across all loaded neurons, rather than per-neuron warping;
 - interactive Three.js 3D orbit, zoom, fit and selection;
-- optional local neuPrint connectivity export and partner browsing;
+- local authoritative connectivity export and partner browsing;
 - click-to-load upstream/downstream partner skeletons;
 - markerless hand-region anchoring using MediaPipe hand landmarks;
 - live FPS display for early mobile benchmarking;
-- data provenance, validation and licensing documentation.
+- data provenance, validation and licensing documentation;
+- a topology-preserving LOD preprocessing pipeline with per-level fidelity metrics and SHA-256 manifests;
+- a Colab workflow for reproducible type-level whole-CNS preprocessing.
 
 ## Authoritative data source
 
@@ -71,10 +73,30 @@ The export creates:
 ```text
 data/connectivity.json
 data/manifest.json
-data/skeletons/<bodyId>.json
+data/skeletons/<bodyId>.swc
 ```
 
 The manifest records file sizes and SHA-256 hashes. The neuPrint token is never written to the repository or frontend.
+
+## Multiscale whole-CNS preprocessing (v0.4)
+
+The next publication milestone is to move from circuit-scale rendering to a multiscale representation suitable for the complete MaleCNS.
+
+```bash
+# Build LOD bundles from the SWCs already cached in this repository
+python scripts/build_lod.py --input data/skeletons --output data/lod
+python scripts/validate_lod.py --dir data/lod
+```
+
+For a larger development set, `scripts/fetch_malecns_skeletons.py` downloads authoritative SWCs using the official annotation table. A practical first whole-CNS layer is one deterministic body ID per annotated neuron type:
+
+```bash
+python scripts/fetch_malecns_skeletons.py --one-per-type --output data/skeletons-global
+python scripts/build_lod.py --input data/skeletons-global --output data/lod-global
+python scripts/validate_lod.py --dir data/lod-global
+```
+
+The sampling rule is deterministic and is **not** described as a canonical biological representative. See [docs/LOD_PIPELINE.md](docs/LOD_PIPELINE.md) and the [Colab notebook](notebooks/MaleFlyConnectome_LOD_Pipeline.ipynb).
 
 ## Scientific claims we are willing to make
 
@@ -113,10 +135,16 @@ See [docs/EDITORIAL_POSITIONING.md](docs/EDITORIAL_POSITIONING.md).
 │   ├── hand-ar.js
 │   └── swc-loader.js
 ├── data/
-│   └── skeletons/
+│   ├── skeletons/
+│   └── lod/                  # generated research bundles
 ├── scripts/
 │   ├── export_subset.py
+│   ├── fetch_malecns_skeletons.py
+│   ├── build_lod.py
+│   ├── validate_lod.py
 │   └── validate_export.py
+├── notebooks/
+│   └── MaleFlyConnectome_LOD_Pipeline.ipynb
 ├── docs/
 ├── DATA_LICENSE.md
 ├── CITATION.cff

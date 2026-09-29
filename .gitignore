@@ -6,9 +6,14 @@ venv/
 .env.*
 .DS_Store
 Thumbs.db
+.cache/
 
 # Never commit neuPrint credentials.
 *token*
+
+# Large local whole-CNS preprocessing inputs/outputs.
+data/skeletons-global/
+data/lod-global/
 
 # Optional local benchmark outputs.
 benchmarks/local/
