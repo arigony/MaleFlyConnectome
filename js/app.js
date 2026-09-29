@@ -9,6 +9,7 @@ const $ = (id) => document.getElementById(id);
 const els = {
   stage: $('stage'), video: $('cameraFeed'), status: $('status'), arHelp: $('arHelp'),
   bodyId: $('bodyId'), loadBody: $('loadBody'), loadPair: $('loadPair'), clearScene: $('clearScene'),
+  lodLevel: $('lodLevel'), loadLod: $('loadLod'),
   fitView: $('fitView'), toggleRotate: $('toggleRotate'), toggleAR: $('toggleAR'), exitAR: $('exitAR'),
   loadConnectivity: $('loadConnectivity'), applyConnectivity: $('applyConnectivity'), connectivitySummary: $('connectivitySummary'),
   seedSelect: $('seedSelect'), directionSelect: $('directionSelect'), minWeight: $('minWeight'), minWeightValue: $('minWeightValue'),
@@ -48,6 +49,7 @@ const state = {
   autoRotate: false,
   arMode: false,
   connectivity: null,
+  lodBundle: null,
   selectedBodyId: null,
   fpsTimes: []
 };
@@ -79,6 +81,7 @@ function clearGeometry() {
 function resetSceneData() {
   clearGeometry();
   state.loaded.clear();
+  state.lodBundle = null;
   state.selectedBodyId = null;
   updateSeedSelector();
   updateStats();
@@ -95,6 +98,68 @@ function computeGlobalTransform(datasets) {
   const size = bbox.getSize(new THREE.Vector3());
   const maxDim = Math.max(size.x, size.y, size.z) || 1;
   return { center, scale: DISPLAY.normalizedExtent / maxDim };
+}
+
+
+function computeBoundsTransform(bounds) {
+  const min = new THREE.Vector3(...bounds.min);
+  const max = new THREE.Vector3(...bounds.max);
+  const center = min.clone().add(max).multiplyScalar(0.5);
+  const size = max.clone().sub(min);
+  const maxDim = Math.max(size.x, size.y, size.z) || 1;
+  return { center, scale: DISPLAY.normalizedExtent / maxDim };
+}
+
+function makeLodLines(neuron, transform, index) {
+  const src = neuron.segments;
+  const verts = new Float32Array(src.length);
+  for (let i = 0; i < src.length; i += 3) {
+    verts[i] = (src[i] - transform.center.x) * transform.scale;
+    verts[i + 1] = (src[i + 1] - transform.center.y) * transform.scale;
+    verts[i + 2] = (src[i + 2] - transform.center.z) * transform.scale;
+  }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(verts, 3));
+  const baseColor = DISPLAY.palette[index % DISPLAY.palette.length];
+  const material = new THREE.LineBasicMaterial({
+    color: baseColor,
+    transparent: true,
+    opacity: DISPLAY.normalOpacity
+  });
+  material.userData.baseColor = baseColor;
+  const lines = new THREE.LineSegments(geometry, material);
+  lines.userData = { bodyId: String(neuron.bodyId), source: 'lod-bundle' };
+  return lines;
+}
+
+async function loadLodBundle(level = 'overview') {
+  if (!['overview', 'regional', 'detailed'].includes(level)) {
+    throw new Error('Unknown LOD level.');
+  }
+  setStatus(`Loading ${level} multiscale bundle…`);
+  const response = await fetch(`./data/lod/${level}.json`, { cache: 'no-store' });
+  if (!response.ok) throw new Error(`LOD bundle unavailable (HTTP ${response.status}).`);
+  const bundle = await response.json();
+  if (!Array.isArray(bundle.neurons) || !bundle.bounds) {
+    throw new Error('LOD bundle is malformed.');
+  }
+
+  resetSceneData();
+  state.lodBundle = bundle;
+  const transform = computeBoundsTransform(bundle.bounds);
+  bundle.neurons.forEach((neuron, index) => {
+    const lines = makeLodLines(neuron, transform, index);
+    dataRoot.add(lines);
+    state.meshes.set(String(neuron.bodyId), lines);
+  });
+  updateStats();
+  fitView();
+  const segments = bundle.neurons.reduce((sum, n) => sum + Number(n.rendered_segments || 0), 0);
+  setDataBadge(`LOD ${level} · ${bundle.neuron_count} neurons`);
+  setStatus(
+    `${bundle.neuron_count.toLocaleString('en-US')} cached MaleCNS neurons rendered at ${level} LOD · ` +
+    `${segments.toLocaleString('en-US')} segments · topology anchors preserved by preprocessing.`
+  );
 }
 
 function makeSkeletonLines(dataset, transform, index) {
@@ -165,6 +230,7 @@ function restorePalette() {
 }
 
 async function loadBody(bodyId, { select = false } = {}) {
+  if (state.lodBundle) resetSceneData();
   bodyId = String(bodyId).trim();
   if (!/^\d+$/.test(bodyId)) throw new Error('Enter a numeric MaleCNS bodyId.');
   if (!state.loaded.has(bodyId)) {
@@ -178,6 +244,7 @@ async function loadBody(bodyId, { select = false } = {}) {
 }
 
 async function loadDefaultPair() {
+  if (state.lodBundle) resetSceneData();
   await Promise.all(DEFAULT_PAIR.map((id) => loadBody(id)));
   restorePalette();
   state.selectedBodyId = null;
@@ -211,6 +278,15 @@ function updateSeedSelector() {
 }
 
 function updateStats() {
+  if (state.lodBundle) {
+    const segments = state.lodBundle.neurons.reduce(
+      (sum, n) => sum + Number(n.rendered_segments || 0), 0
+    );
+    els.nNeurons.textContent = Number(state.lodBundle.neuron_count || state.lodBundle.neurons.length).toLocaleString('en-US');
+    els.nNodes.textContent = 'LOD';
+    els.nSegments.textContent = segments.toLocaleString('en-US');
+    return;
+  }
   const datasets = [...state.loaded.values()];
   els.nNeurons.textContent = datasets.length.toLocaleString('en-US');
   els.nNodes.textContent = datasets.reduce((sum, d) => sum + d.nodes.length, 0).toLocaleString('en-US');
@@ -292,7 +368,7 @@ function applyConnectivityFilter() {
 }
 
 async function enterAR() {
-  if (!state.loaded.size) await loadDefaultPair();
+  if (!state.loaded.size && !state.lodBundle) await loadDefaultPair();
   await handAR.start();
   state.arMode = true;
   document.body.classList.add('ar', 'panel-collapsed');
@@ -348,6 +424,10 @@ els.loadBody.addEventListener('click', async () => {
 els.loadPair.addEventListener('click', async () => {
   try { await loadDefaultPair(); }
   catch (error) { console.error(error); setStatus(`Could not load MaleCNS skeletons: ${error.message}`); }
+});
+els.loadLod.addEventListener('click', async () => {
+  try { await loadLodBundle(els.lodLevel.value); }
+  catch (error) { console.error(error); setStatus(`Could not load LOD bundle: ${error.message}`); }
 });
 els.clearScene.addEventListener('click', resetSceneData);
 els.fitView.addEventListener('click', fitView);
